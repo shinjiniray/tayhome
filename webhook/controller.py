@@ -1,6 +1,8 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from webhook.mqtthandler import publish
+
 
 @api_view(['GET', 'POST'])
 def webhook(request):
@@ -15,13 +17,23 @@ def webhook(request):
         if request.data['request']['intent']['name'] == 'turnon':
             device = request.data['request']['intent']['slots']['device']['value']
             place = request.data['request']['intent']['slots']['place']['value']
-            reply_msg = "turning on, " + place + " " + device + " nigga"
-            endsession = True
+            status = publish(place, device, 0)
+            if status:
+                reply_msg = "Turning on, " + place + " " + device + " nigga"
+                endsession = True
+            else:
+                reply_msg = "Couldn't turn on " + place + " " + device + " nigga"
+                endsession = False
         elif request.data['request']['intent']['name'] == 'turnoff':
             device = request.data['request']['intent']['slots']['device']['value']
             place = request.data['request']['intent']['slots']['place']['value']
-            reply_msg = "turning off, " + place + " " + device + " nigga"
-            endsession = True
+            status = publish(place, device, 1)
+            if status:
+                reply_msg = "Turning off, " + place + " " + device + " nigga"
+                endsession = True
+            else:
+                reply_msg = "Couldn't turn off " + place + " " + device + " nigga"
+                endsession = False
         elif request.data['request']['intent']['name'] == 'AMAZON.StopIntent':
             endsession = True
 
