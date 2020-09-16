@@ -5,6 +5,8 @@ import AWSIoTPythonSDK.MQTTLib as AWSIoTPyMQTT
 
 class MQTTHandler(threading.Thread):
 
+    myAWSIoTMQTTClient = None
+
     def __init__(self):
         super().__init__()
 
@@ -31,17 +33,15 @@ class MQTTHandler(threading.Thread):
             print('Not Connected')
 
     def publish(self, pin, what):
-        print("in class publish")
         return self.myAWSIoTMQTTClient.publish("device", json.dumps({"device_pin":pin, "what":what}), 0)
 
 
-t = None
+t = MQTTHandler()
 
 
 def publish(place, device, what):
     global t
     pin = 0
-    print("in func publish")
     return t.publish(pin, what)
 
 
