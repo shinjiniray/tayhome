@@ -13,13 +13,13 @@ def webhook(request):
         endsession = False
     elif request.data['request']['type'] == 'IntentRequest':
         if request.data['request']['intent']['name'] == 'turnon':
-            place = request.data['request']['intent']['slots']['device']['value']
-            device = request.data['request']['intent']['slots']['place']['value']
+            device = request.data['request']['intent']['slots']['device']['value']
+            place = request.data['request']['intent']['slots']['place']['value']
             reply_msg = "turning on, " + place + " " + device + " nigga"
             endsession = True
         elif request.data['request']['intent']['name'] == 'turnoff':
-            place = request.data['request']['intent']['slots']['device']['value']
-            device = request.data['request']['intent']['slots']['place']['value']
+            device = request.data['request']['intent']['slots']['device']['value']
+            place = request.data['request']['intent']['slots']['place']['value']
             reply_msg = "turning off, " + place + " " + device + " nigga"
             endsession = True
         elif request.data['request']['intent']['name'] == 'AMAZON.StopIntent':
