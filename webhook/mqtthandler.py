@@ -12,9 +12,9 @@ class MQTTHandler(threading.Thread):
         args = {
             'client_id': 'abcdefghijkl',
             'endpoint': 'a8jyxx32q2p0a-ats.iot.ap-south-1.amazonaws.com',
-            'cert': '/home/pi/src/certs/cert pem/232ef22a93-certificate.pem.crt',
-            'key': '/home/pi/src/certs/private key/232ef22a93-private.pem.key',
-            'root_ca': '/home/pi/src/certs/rootCA.pem'
+            'cert': '/home/ec2-user/tayhome/certs/mqtt/certpem/232ef22a93-certificate.pem.crt',
+            'key': '/home/ec2-user/tayhome/certs/mqtt/privatekey/232ef22a93-private.pem.key',
+            'root_ca': '/home/ec2-user/tayhome/certs/mqtt/rootCA.pem'
         }
 
         # Create an AWS IoT MQTT Client using TLSv3.1 Mutual Authentication
