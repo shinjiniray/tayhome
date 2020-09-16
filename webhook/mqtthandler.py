@@ -31,6 +31,7 @@ class MQTTHandler(threading.Thread):
             print('Not Connected')
 
     def publish(self, pin, what):
+        print("in class publish")
         return self.myAWSIoTMQTTClient.publish("device", json.dumps({"device_pin":pin, "what":what}), 0)
 
 
@@ -40,6 +41,7 @@ t = None
 def publish(place, device, what):
     global t
     pin = 0
+    print("in func publish")
     return t.publish(pin, what)
 
 
