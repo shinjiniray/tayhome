@@ -4,6 +4,7 @@ from rest_framework.response import Response
 
 @api_view(['GET', 'POST'])
 def webhook(request):
+
     reply_msg = ""
     endsession = True
 
@@ -12,10 +13,14 @@ def webhook(request):
         endsession = False
     elif request.data['request']['type'] == 'IntentRequest':
         if request.data['request']['intent']['name'] == 'turnon':
-            reply_msg = "turning on nigga"
+            place = request.data['request']['intent']['slots']['device']['value']
+            device = request.data['request']['intent']['slots']['place']['value']
+            reply_msg = "turning on, " + place + " " + device + "nigga"
             endsession = True
         elif request.data['request']['intent']['name'] == 'turnoff':
-            reply_msg = "turning on nigga"
+            place = request.data['request']['intent']['slots']['device']['value']
+            device = request.data['request']['intent']['slots']['place']['value']
+            reply_msg = "turning off, " + place + " " + device + "nigga"
             endsession = True
         elif request.data['request']['intent']['name'] == 'AMAZON.StopIntent':
             endsession = True
