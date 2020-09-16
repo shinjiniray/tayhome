@@ -18,6 +18,7 @@ def webhook(request):
             device = request.data['request']['intent']['slots']['device']['value']
             place = request.data['request']['intent']['slots']['place']['value']
             status = publish(place, device, 0)
+            print(status)
             if status:
                 reply_msg = "Turning on, " + place + " " + device + " nigga"
                 endsession = True
@@ -28,6 +29,7 @@ def webhook(request):
             device = request.data['request']['intent']['slots']['device']['value']
             place = request.data['request']['intent']['slots']['place']['value']
             status = publish(place, device, 1)
+            print(status)
             if status:
                 reply_msg = "Turning off, " + place + " " + device + " nigga"
                 endsession = True
