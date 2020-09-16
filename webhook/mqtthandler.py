@@ -6,7 +6,7 @@ import AWSIoTPythonSDK.MQTTLib as AWSIoTPyMQTT
 class MQTTHandler(threading.Thread):
 
     def __init__(self):
-        pass
+        super().__init__()
 
     def run(self):
         args = {
