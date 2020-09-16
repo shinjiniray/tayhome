@@ -5,14 +5,12 @@ import AWSIoTPythonSDK.MQTTLib as AWSIoTPyMQTT
 
 class MQTTHandler(threading.Thread):
 
-    myAWSIoTMQTTClient = None
-
     def __init__(self):
         super().__init__()
 
     def run(self):
         args = {
-            'client_id': 'abcdefghijkl',
+            'client_id': 'jgvnrevnrew',
             'endpoint': 'a8jyxx32q2p0a-ats.iot.ap-south-1.amazonaws.com',
             'cert': '/home/ec2-user/tayhome/certs/mqtt/certpem/232ef22a93-certificate.pem.crt',
             'key': '/home/ec2-user/tayhome/certs/mqtt/privatekey/232ef22a93-private.pem.key',
