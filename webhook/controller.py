@@ -15,12 +15,12 @@ def webhook(request):
         if request.data['request']['intent']['name'] == 'turnon':
             place = request.data['request']['intent']['slots']['device']['value']
             device = request.data['request']['intent']['slots']['place']['value']
-            reply_msg = "turning on, " + place + " " + device + "nigga"
+            reply_msg = "turning on, " + place + " " + device + " nigga"
             endsession = True
         elif request.data['request']['intent']['name'] == 'turnoff':
             place = request.data['request']['intent']['slots']['device']['value']
             device = request.data['request']['intent']['slots']['place']['value']
-            reply_msg = "turning off, " + place + " " + device + "nigga"
+            reply_msg = "turning off, " + place + " " + device + " nigga"
             endsession = True
         elif request.data['request']['intent']['name'] == 'AMAZON.StopIntent':
             endsession = True
