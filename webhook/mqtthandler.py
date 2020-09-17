@@ -30,17 +30,16 @@ class MQTTHandler(threading.Thread):
         else:
             print('Not Connected')
 
-    def publish(self, pin, what):
-        return self.myAWSIoTMQTTClient.publish("device", json.dumps({"device_pin":pin, "what":what}), 0)
+    def publish(self, topic, pin, what):
+        return self.myAWSIoTMQTTClient.publish(topic, json.dumps({"device_pin":pin, "what":what}), 0)
 
 
 t = MQTTHandler()
 
 
-def publish(place, device, what):
+def publish(topic, pin, place, device, what):
     global t
-    pin = 0
-    return t.publish(pin, what)
+    return t.publish(topic, pin, what)
 
 
 def initialize():

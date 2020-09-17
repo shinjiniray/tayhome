@@ -15,9 +15,20 @@ def webhook(request):
         endsession = False
     elif request.data['request']['type'] == 'IntentRequest':
         if request.data['request']['intent']['name'] == 'turnon':
-            device = request.data['request']['intent']['slots']['device']['value']
             place = request.data['request']['intent']['slots']['place']['value']
-            status = publish(place, device, 0)
+            device = request.data['request']['intent']['slots']['device']['value']
+
+            if place == "bedroom":
+                topic = "device"
+            else:
+                topic = "device"
+
+            if device == "light":
+                pin = 0
+            else:
+                pin = 1
+
+            status = publish(topic, pin, place, device, 0)
             print(status)
             if status:
                 reply_msg = "Turning on, " + place + " " + device + " nigga"
@@ -26,9 +37,20 @@ def webhook(request):
                 reply_msg = "Couldn't turn on " + place + " " + device + " nigga"
                 endsession = False
         elif request.data['request']['intent']['name'] == 'turnoff':
-            device = request.data['request']['intent']['slots']['device']['value']
             place = request.data['request']['intent']['slots']['place']['value']
-            status = publish(place, device, 1)
+            device = request.data['request']['intent']['slots']['device']['value']
+
+            if place == "bedroom":
+                topic = "device"
+            else:
+                topic = "device"
+
+            if device == "light":
+                pin = 0
+            else:
+                pin = 1
+
+            status = publish(topic, pin, place, device, 1)
             print(status)
             if status:
                 reply_msg = "Turning off, " + place + " " + device + " nigga"
